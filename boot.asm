@@ -49,6 +49,9 @@ start:
     or eax, 1 << 16
     mov cr0, eax
 
+    ; load global descriptor table
+    lgdt [gdt64.pointer]
+
     mov word [0xb8000], 0x0248 ; H
     mov word [0xb8002], 0x0265 ; e
     mov word [0xb8004], 0x026c ; l
@@ -80,3 +83,6 @@ gdt64:
     dq (1<<44) | (1<<47) | (1<<41) | (1<<43) | (1<<53) ; code segment
 .code: equ $ - gdt64
     dq (1<<44) | (1<<47) | (1<<41)  ; data segment
+.pointer:
+    dq .pointer - gdt64 - 1
+    dq gdt64
