@@ -73,3 +73,7 @@ p3_table:
     resb 4096
 p2_table:
     resb 4096
+
+section .rodata
+gdt64:
+    dq 0
