@@ -3,6 +3,7 @@ global start
 section .text
 bits 32
 start:
+
     ; Point the first entry of the level 4 page table to the first entry in the
     ; p3 table
     mov eax, p3_table
@@ -64,11 +65,9 @@ start:
     hlt
 
 section .bss ; bss = 'block started by symbol'
-
 align 4096 ; aligned to 4096 byte chunks
-
 p4_table:
-    resb 4096 ; reserves bytes
+    resb 4096 ; reserved bytes
 p3_table:
     resb 4096
 p2_table:
@@ -77,9 +76,7 @@ p2_table:
 section .rodata
 gdt64:
     dq 0
-
 .code: equ $ - gdt64
-    dq (1<<44) | (1<<47) | (1<<41) | (1<<43) | (1<<53)
-
+    dq (1<<44) | (1<<47) | (1<<41) | (1<<43) | (1<<53) ; code segment
 .code: equ $ - gdt64
-    dq (1<<44) | (1<<47) | (1<<41)
+    dq (1<<44) | (1<<47) | (1<<41)  ; data segment
