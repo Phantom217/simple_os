@@ -77,3 +77,6 @@ p2_table:
 section .rodata
 gdt64:
     dq 0
+
+.code: equ $ - gdt64
+    dq (1<<44) | (1<<47) | (1<<41) | (1<<43) | (1<<53)
