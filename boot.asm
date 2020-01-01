@@ -81,7 +81,7 @@ gdt64:
     dq 0
 .code: equ $ - gdt64
     dq (1<<44) | (1<<47) | (1<<41) | (1<<43) | (1<<53) ; code segment
-.code: equ $ - gdt64
+.data: equ $ - gdt64
     dq (1<<44) | (1<<47) | (1<<41)  ; data segment
 .pointer:
     dq .pointer - gdt64 - 1
