@@ -2,3 +2,9 @@ build/
 isofiles/
 .bin
 .iso
+
+
+#Added by cargo
+
+/target
+Cargo.lock
